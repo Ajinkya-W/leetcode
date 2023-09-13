@@ -1,31 +1,20 @@
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& a, int target) 
+    vector<int> twoSum(vector<int>& nums, int target) 
     {
         vector<int> ans;
+        map<int,int> hmap;
+        for(int itr=0; itr<nums.size(); itr++){
         
-        int start=0,end=a.size()-1;
-        bool flag=0;
-        map<int, int> umap;
-        for(int i=0;i<a.size();i++)
-        {
-            if(umap.find(target-a[i])!=umap.end())
-            {
-                ans.push_back(i);
-                ans.push_back(umap[target-a[i]]);
-                return ans;
-            }
-            else
-            {
-                umap[a[i]]=i;
+            if(hmap.find(nums[itr])==hmap.end())
+                hmap.insert({target-nums[itr],itr});
+            
+            else {
+                ans.push_back(hmap[nums[itr]]);
+                ans.push_back(itr);
+                break;
             }
         }
-        // return ans;
-        
         return ans;
     }
 };
-		// 	result.push_back(hash[numberToFind] + 1);
-		// 	result.push_back(i + 1);			
-		// 	return result;
-		// }
