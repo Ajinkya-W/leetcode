@@ -3,7 +3,7 @@ public:
     vector<int> twoSum(vector<int>& nums, int target) 
     {
         vector<int> ans;
-        map<int,int> hmap;
+        unordered_map<int,int> hmap;
         for(int itr=0; itr<nums.size(); itr++){
         
             if(hmap.find(nums[itr])==hmap.end())
