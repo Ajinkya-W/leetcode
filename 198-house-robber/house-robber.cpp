@@ -6,7 +6,6 @@ public:
             return nums[0];
         }
     
-        vector<int> dp(arraySize);
         int a = nums[0];
         int b = max(a,nums[1]);
         
