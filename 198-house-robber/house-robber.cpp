@@ -7,12 +7,14 @@ public:
         }
     
         vector<int> dp(arraySize);
-        dp[0] = nums[0];
-        dp[1] = max(dp[0],nums[1]);
+        int a = nums[0];
+        int b = max(a,nums[1]);
         
         for (int itr = 2; itr < arraySize; itr++){
-            dp[itr] = max(dp[itr-1], nums[itr]+dp[itr-2]);
+            int c = b;
+            b = max(b, nums[itr]+a);
+            a = c;
         }
-        return dp[arraySize-1];
+        return b;
     }
 };
