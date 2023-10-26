@@ -11,28 +11,29 @@
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
-        
         return reverseList(head, left, right);
     }
     ListNode* reverseList(ListNode* head, int left, int right) {
-        ListNode *temp, *prev, *curr, dummyFirst(-1000, head);
-        curr = head, prev = &dummyFirst;
+        // intialisation
+        ListNode *temp, *prev, dummyFirst(-1000, head);
+        prev = &dummyFirst;
         prev->next = head;
         // Reaching correct start index
         for(int itr = 1; itr<left ; itr++){
-            prev = curr;
-            curr = curr->next;
+            prev = head;
+            head = head->next;
         }
-        ListNode *BeforeReversePrevNode = prev, *first = curr;
-        // cout<< prev->val<<" "<<curr->val<<endl;
+        // preserving so that we can point it after end of process
+        ListNode *BeforeReversePrevNode = prev, *first = head;
+        // iterating elements number times
         for(int itr=1; itr <= right-left+1; itr++){
-            temp = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = temp;
+            temp = head->next;
+            head->next = prev;
+            prev = head;
+            head = temp;
         }
         BeforeReversePrevNode->next = prev;
-        first->next = curr;
+        first->next = head;
         
         return dummyFirst.next;
     }
